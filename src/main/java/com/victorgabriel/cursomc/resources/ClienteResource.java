@@ -6,22 +6,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.victorgabriel.cursomc.domain.Categoria;
-import com.victorgabriel.cursomc.services.CategoriaService;
+import com.victorgabriel.cursomc.domain.Cliente;
+import com.victorgabriel.cursomc.services.ClienteService;
 
 import javassist.tools.rmi.ObjectNotFoundException;
 
 @RestController
-@RequestMapping(value="/categorias")
-public class CategoriaResources {
+@RequestMapping(value="/clientes")
+public class ClienteResource {
 	
 	@Autowired
-	private CategoriaService categoriaService;
+	private ClienteService categoriaService;
 
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) throws ObjectNotFoundException {
 		
-		Categoria obj= categoriaService.buscar(id);
+		Cliente obj= categoriaService.buscar(id);
+		
 		return ResponseEntity.ok().body(obj);
 	}
 	
