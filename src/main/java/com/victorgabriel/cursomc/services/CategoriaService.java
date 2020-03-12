@@ -21,7 +21,11 @@ public class CategoriaService {
 		
 		return obj.orElseThrow(() -> new com.victorgabriel.cursomc.services.exceptions.ObjectNotFoundException("Objeto nao encontrado id : "+id
 				+", Tipo: "+ Categoria.class.getName()));
-		
+		}
+	
+	public Categoria insert(Categoria obj) {
+		obj.setId(null);
+		return repo.save(obj);
 	}
 	 
 }
