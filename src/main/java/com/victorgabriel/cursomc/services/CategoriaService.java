@@ -16,7 +16,7 @@ public class CategoriaService {
 	@Autowired
 	private CategoriaRepository repo;
 	
-	public Categoria buscar(Integer id) throws ObjectNotFoundException {
+	public Categoria find(Integer id) throws ObjectNotFoundException {
 		Optional<Categoria> obj = repo.findById(id); 
 		
 		return obj.orElseThrow(() -> new com.victorgabriel.cursomc.services.exceptions.ObjectNotFoundException("Objeto nao encontrado id : "+id
@@ -24,8 +24,20 @@ public class CategoriaService {
 		}
 	
 	public Categoria insert(Categoria obj) {
-		obj.setId(null);
-		return repo.save(obj);
+		
+	 obj.setId(null);
+		
+	return repo.save(obj);
 	}
 	 
+	public Categoria update(Categoria obj) {
+		
+		try {
+			find(obj.getId());
+		} catch (ObjectNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		return repo.save(obj);
+	}
 }
